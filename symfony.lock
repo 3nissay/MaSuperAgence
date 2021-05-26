@@ -1,4 +1,10 @@
 {
+<<<<<<< HEAD
+=======
+    "cocur/slugify": {
+        "version": "v4.0.0"
+    },
+>>>>>>> test/Fizioh
     "composer/package-versions-deprecated": {
         "version": "1.11.99.2"
     },
