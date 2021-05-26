@@ -10,4 +10,24 @@
 molesyigba nblal provident repplis int soluta tmlate lustre magni irue</p>
 </div>
 
+<div class="container">
+    <h2 class="pb-5">Les derniers biens</h2>
+    <div class="row flex">
+        {% for property in properties %}
+            <div class="col-3 p-1">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center pt-4">
+                            <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>
+                        </h5>
+                        <h5 class="card-text text-muted">{{property.surface}}m² - {{ property.rooms }}p</h5>
+                        <p class="card-text">{{property.city}} ({{property.postalCode}})</p>
+                        <h4 class="card-text text-black text-right">{{property.getFormatedPrice}} €</h4>
+                    </div>
+                <div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}

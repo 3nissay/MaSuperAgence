@@ -18,6 +18,25 @@ class PropertyRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Property::class);
     }
+  
+
+    public function findAllVisible(){
+        return $this->findVisibleQuery()
+        ->where('p.sold = false')
+        ->getQuery()
+        ->getResult();
+    }
+
+    /**
+     * @return Property[]
+     */
+
+    public function findLatest(){
+        return $this->findVisibleQuery()
+        ->setMaxResults(4)
+        ->getQuery()
+        ->getResult();
+    }
 
     // /**
     //  * @return Property[] Returns an array of Property objects
@@ -47,4 +66,9 @@ class PropertyRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    private function findVisibleQuery(){
+        return $this->createQueryBuilder('p')
+        ->where('p.sold = false');
+    }
 }

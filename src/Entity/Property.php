@@ -4,12 +4,18 @@ namespace App\Entity;
 
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
  */
 class Property
 {
+
+    const HEAT = [
+        0 =>'Electrique',
+        1 => 'Gaz'
+    ];
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -75,12 +81,16 @@ class Property
     /**
      * @ORM\Column(type="boolean", options={"default": false})
      */
-    private $sold;
+    private $sold = false;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $create_at;
+
+    public function __construct(){
+        $this->create_at = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -97,6 +107,9 @@ class Property
         $this->title = $title;
 
         return $this;
+    }
+    public function getSlug(){
+       return (new Slugify())->slugify($this->title);
     }
 
     public function getDescription(): ?string
@@ -164,6 +177,10 @@ class Property
         return $this->price;
     }
 
+    public function getFormatedPrice(){
+        return number_format($this->price, 0, '', ' ');
+    }
+
     public function setPrice(int $price): self
     {
         $this->price = $price;
@@ -174,6 +191,9 @@ class Property
     public function getHeat(): ?int
     {
         return $this->heat;
+    }
+    public function getHeatType(){
+        return self::HEAT[$this->heat];
     }
 
     public function setHeat(int $heat): self
