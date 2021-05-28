@@ -1,11 +1,9 @@
 <?php
 namespace App\Controller;
-<<<<<<< HEAD
-=======
+
 use App\Entity\Property;
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\EntityManagerInterface;
->>>>>>> test/Fizioh
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,8 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PropertyController extends AbstractController {
     /**
-<<<<<<< HEAD
-=======
      * @var PropertyRepository
      */
 
@@ -26,14 +22,10 @@ class PropertyController extends AbstractController {
         $this->em = $em;
     }
     /**
->>>>>>> test/Fizioh
      * @Route("/biens", name="property.index")
      * @return Response
      */
     public function index(){
-<<<<<<< HEAD
-        return $this->render('property/index.html.twig');
-=======
         return $this->render('property/index.html.twig', [
             'current_menu' => 'properties'
         ]);
@@ -53,6 +45,5 @@ class PropertyController extends AbstractController {
             'property' => $property,
             'current_menu' => 'properties'
         ]);
->>>>>>> test/Fizioh
     }
 }
